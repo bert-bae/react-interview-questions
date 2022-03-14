@@ -47,13 +47,15 @@ export default function App() {
         Undo
       </button>
 
-      <h3>Search History</h3>
-      <HistoryList
-        history={history}
-        onItemClick={(val) => {
-          forceUpdateHistory(val);
-        }}
-      />
+      {history.length > 0 &&
+        <h3>Search History</h3>
+        <HistoryList
+          history={history}
+          onItemClick={(val) => {
+            forceUpdateHistory(val);
+          }}
+        />
+      }
     </div>
   );
 }
