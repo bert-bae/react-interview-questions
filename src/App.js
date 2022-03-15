@@ -18,7 +18,9 @@ export default function App() {
 
   const debounceSearch = useRef(
     debounce((value) => {
-      addHistory(value);
+      if (value) {
+        addHistory(value);
+      }
     }, DEBOUNCE_DELAY)
   ).current;
 
@@ -47,15 +49,17 @@ export default function App() {
         Undo
       </button>
 
-      {history.length > 0 &&
-        <h3>Search History</h3>
-        <HistoryList
-          history={history}
-          onItemClick={(val) => {
-            forceUpdateHistory(val);
-          }}
-        />
-      }
+      {history.length > 0 && (
+        <>
+          <h3>Search History</h3>
+          <HistoryList
+            history={history}
+            onItemClick={(val) => {
+              forceUpdateHistory(val);
+            }}
+          />
+        </>
+      )}
     </div>
   );
 }
